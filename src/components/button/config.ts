@@ -1,27 +1,48 @@
-import { CSSProperties } from 'react';
 import './button.css';
-export interface ButtonBaseProps {
+import {CSSProperties} from "react";
+export interface BaseButtonProps {
     style ?: CSSProperties;
     className ?: string;
     mouseHover ?: CSSProperties | string;
     mouseDown ?: CSSProperties | string;
 }
 export type config = {
-    primaryButton ?: ButtonBaseProps
+    windPrimaryButton ?: BaseButtonProps;
+    icon ?: BaseButtonProps;
 }
 export const config: config = {
-    primaryButton: {
+    windPrimaryButton: {
         style: {
-            padding: '10px',
+            height: '36px',
+            width: '320px',
+            lineHeight: '36px',
+            textAlign: "center",
             display: 'inline-block',
-            borderRadius: '2px',
+            borderRadius: '18px',
             cursor: 'pointer',
-            color: '#FFF',
+            color: '#333333',
+            backgroundColor: '#FBDE3C',
+            fontSize: '14px',
+            fontWeight: 'bold',
+            boxShadow: '0 5px 10px rgba(255, 222, 60, .5)'
         },
-        className: 'primaryButton',
-        mouseHover: 'hoverPrimary',
         mouseDown: {
-            backgroundColor: '#237BE3'
+            backgroundColor: '#F2CF0B'
         }
     },
+    icon: {
+        style: {
+            verticalAlign: 'middle',
+            //width: '48px',
+            display: 'inline-block',
+            //height: '48px',
+            //fontSize: '20px',
+            //marginRight: '10px',
+            //lineHeight: '48px',
+            textAlign: 'center',
+            background: '#ffde00',
+            borderRadius: '50%',
+            fontWeight: 'bold'
+        }
+    }
 };
