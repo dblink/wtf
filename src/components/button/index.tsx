@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { config } from './config';
-import { ButtonBase } from './button';
+import { ButtonBase } from './base/button';
 
 interface BaseProps{
     text: string;

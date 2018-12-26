@@ -3,8 +3,8 @@ import './button.css';
 export interface ButtonBaseProps {
     style ?: CSSProperties;
     className ?: string;
-    mouseHover ?: CSSProperties;
-    mouseDown ?: CSSProperties;
+    mouseHover ?: CSSProperties | string;
+    mouseDown ?: CSSProperties | string;
 }
 export type config = {
     primaryButton ?: ButtonBaseProps
@@ -17,12 +17,9 @@ export const config: config = {
             borderRadius: '2px',
             cursor: 'pointer',
             color: '#FFF',
-            backgroundColor: '#4198ff'
         },
         className: 'primaryButton',
-        mouseHover: {
-            backgroundColor: '#70b2ff'
-        },
+        mouseHover: 'hoverPrimary',
         mouseDown: {
             backgroundColor: '#237BE3'
         }

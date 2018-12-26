@@ -1,5 +1,6 @@
 .primaryButton{
     cursor: pointer;
+    background-color: #4198ff;
     -webkit-touch-callout: none; /* iOS Safari */
 
     -webkit-user-select: none; /* Chrome/Safari/Opera */
@@ -13,4 +14,7 @@
     user-select: none; /* Non-prefixed version, currently
 
     not supported by any browser */
+}
+.hoverPrimary{
+    background-color: #70b2ff;
 }
