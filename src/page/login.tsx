@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { PrimaryButton, Icon } from '../components/button';
+import { UserInput } from '../components/input';
 //import * as Table from '../components/table';
 //let Table = require('../components/table');
 //import { Table } from '../components/table';
 //import { lazyLoad } from '../components/loadable/loadable';
-
+let src = require('../img/banner.jpg');
+//import src from '../img/banner.jpg';
 
 export class Login extends React.Component{
     constructor(props: any){
@@ -34,8 +36,8 @@ export class Login extends React.Component{
         //let a = new Table.Some();
         //let B = Table.A();
         return <section style={{height: '100vh', color: '#333'}}>
-            <div style={{height: '150px'}}>
-                
+            <div>
+                <img src={src} style={{width: '100%'}} />
             </div>
             <div style={this.head}>
                 申请流程
@@ -49,10 +51,10 @@ export class Login extends React.Component{
                                     {key+1}
                                 </Icon>
                                 <div style={{marginLeft: '10px', verticalAlign: 'middle',display: 'inline-block'}}>
-                                    <p style={{fontSize: '18px',fontWeight: 'bold'}}>
+                                    <p style={{fontSize: '14px',fontWeight: 'bold'}}>
                                         {value.text}
                                     </p>
-                                    <p style={{fontSize: '14px',color: '#666'}}>
+                                    <p style={{fontSize: '12px',color: '#666'}}>
                                         {value.detail}
                                     </p>
                                 </div>
@@ -61,8 +63,11 @@ export class Login extends React.Component{
                     }
                     
                 </ul>
+                <div>
+                    <UserInput value='123' />
+                </div>
                 <div style={{padding: '20px 0',textAlign:'center'}}>
-                    <PrimaryButton >
+                    <PrimaryButton>
                         立即申请贷款
                     </PrimaryButton>
                 </div>

@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { BaseButtonProps } from '../config';
-import { Template } from './template';
-interface Props extends BaseButtonProps {
+import { OperateTemp, BaseOperateProps } from '../../template/operateTemp';
+export interface BaseButtonProps extends BaseOperateProps {
     [index : string]: any;
 }
 
-export class BaseButton extends Template<Props, any> {
-    constructor(props: Props){
+export class BaseButton extends OperateTemp<BaseButtonProps, any> {
+    constructor(props: BaseButtonProps){
         super(props);
         //let _props = this.props.;
         this.state = {
@@ -18,6 +17,35 @@ export class BaseButton extends Template<Props, any> {
         this.mouseEvent = this.getMouseEvent();
     }
     mouseEvent: React.DOMAttributes<HTMLSpanElement>;
+    //添加鼠标样式
+    getMouseEvent(): React.DOMAttributes<HTMLSpanElement>{
+        let _mouseEvent:React.DOMAttributes<HTMLSpanElement> = {}
+        //是否有鼠标浮动样式
+        if(this.props.mouseHover){
+            /*_mouseEvent = {
+                onMouseLeave: this.onMouseRestoreHandler.bind(this),
+                onMouseEnter: this.onMouseEnterHandler.bind(this)
+            }*/
+            Object.assign(_mouseEvent, this.isHover());  
+        }
+        //是否有鼠标点击样式
+        if(this.props.mouseDown){
+            /*_mouseEvent.onMouseDown = this.onMouseDownHandler.bind(this);
+            _mouseEvent.onMouseUp = this.onMouseUpHandler.bind(this);
+            */
+           Object.assign(_mouseEvent, this.isDown());
+        }
+        return _mouseEvent
+    }
+    //允许改变的样式为true才可以改变
+    shouldComponentUpdate(nextProps: any, nextState: any){
+        return nextState.shouldUpdate 
+    }
+    componentDidUpdate(){
+        this.setState({
+            shouldUpdate: false
+        })
+    }
     render(){
         let {
             style: style,

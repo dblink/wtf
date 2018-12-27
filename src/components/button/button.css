@@ -1,4 +1,4 @@
-button{
+span[role=button]{
     cursor: pointer;
     border: none;
     -webkit-touch-callout: none; /* iOS Safari */

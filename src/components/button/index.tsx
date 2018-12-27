@@ -2,13 +2,12 @@ import * as React from 'react';
 import { config } from './config';
 import {BaseButton } from './base/button';
 
-interface BaseProps{
-    [index: string]: any;
+interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
+    width: string
 }
-
-type PrimaryButtonProps = BaseProps;
-type IconProps = BaseProps;
-
+interface PrimaryButtonProps extends React.HTMLAttributes<HTMLSpanElement>{
+    
+}
 export class PrimaryButton extends React.Component<PrimaryButtonProps, any>{
     render(){
         return <BaseButton {...config.windPrimaryButton} {...this.props} >

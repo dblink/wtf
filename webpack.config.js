@@ -1,6 +1,7 @@
 const path = require('path');
 const deleteFolderFile = require('./deleteFile').deleteFolderFile;
 const targetPath = path.resolve(__dirname, 'dist');
+//覆盖前删除
 deleteFolderFile(targetPath);
 
 module.exports = {

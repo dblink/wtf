@@ -1,11 +1,5 @@
+import { BaseButtonProps } from './base/button';
 import './button.css';
-import {CSSProperties} from "react";
-export interface BaseButtonProps {
-    style ?: CSSProperties;
-    className ?: string;
-    mouseHover ?: CSSProperties | string;
-    mouseDown ?: CSSProperties | string;
-}
 export type config = {
     windPrimaryButton ?: BaseButtonProps;
     icon ?: BaseButtonProps;
@@ -14,7 +8,8 @@ export const config: config = {
     windPrimaryButton: {
         style: {
             height: '36px',
-            width: '320px',
+            maxWidth: '320px',
+            width: '90%',
             lineHeight: '36px',
             textAlign: "center",
             display: 'inline-block',
@@ -33,12 +28,7 @@ export const config: config = {
     icon: {
         style: {
             verticalAlign: 'middle',
-            //width: '48px',
             display: 'inline-block',
-            //height: '48px',
-            //fontSize: '20px',
-            //marginRight: '10px',
-            //lineHeight: '48px',
             textAlign: 'center',
             background: '#ffde00',
             borderRadius: '50%',

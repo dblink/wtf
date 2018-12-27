@@ -2,9 +2,13 @@
     padding: 0;
     margin: 0;
     zoom: 1;
+    color: #333;
 }
 .intro-ul{
     margin: 10px;
+    width: 90%;
+    max-width: 320px;
+    margin: auto;
     list-style-type: none;
     position: relative;
 }
