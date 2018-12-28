@@ -7,7 +7,7 @@ deleteFolderFile(targetPath);
 module.exports = {
     mode: "production", //production|development
     entry: {
-        index:"./src/page/index.tsx"
+        index:"./src/page/enter.tsx"
     },
 
     output: {

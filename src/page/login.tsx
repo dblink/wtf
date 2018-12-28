@@ -1,93 +1,118 @@
 import * as React from 'react';
-import { PrimaryButton, Icon } from '../components/button';
-import { UserInput } from '../components/input';
-//import * as Table from '../components/table';
-//let Table = require('../components/table');
-//import { Table } from '../components/table';
-//import { lazyLoad } from '../components/loadable/loadable';
-let src = require('../img/banner.jpg');
-//import src from '../img/banner.jpg';
+import { UserInput, UserInputPassword } from '../components/input';
+import { PrimaryButton } from '../components/button';
 
-export class Login extends React.Component{
-    constructor(props: any){
-        super(props)
+interface Props {
+    linkTo: (page: string)=>void;
+    type: 'register' | 'login';
+}
+
+interface State {
+    data: {
+        user: any;
+        password: any;
+    };
+    text: string;
+}
+
+export class Login extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            data: {
+                user: '',
+                password: ''
+            },
+            text: this.props.type === 'register' ? '注册' : '登录'
+        };
+        this.onChange = this.onChange.bind(this);
+        this.post = this.post.bind(this);
     }
-    head: React.CSSProperties = {
-        borderBottom: '1px solid #999',
-        padding: '10px', 
-        fontSize:'18px', 
-        color: '#333',
-        fontWeight: 'bold'
-    };
-    body: React.CSSProperties = {
-        padding: '15px',
-    };
-    info = [{
-        text: '最快30秒申请',
-        detail: '提交个人信息，申请借款资格'
-    },{
-        text: '5分钟沟通',
-        detail: '了解借款情况，获取最终额度'
-    },{
-        text: '提交审批',
-        detail: '极速放款，最快2小时放款'
-    }]
-    render(){
-        //let a = new Table.Some();
-        //let B = Table.A();
-        return <section style={{height: '100vh', color: '#333'}}>
-            <div>
-                <img src={src} style={{width: '100%'}} />
+
+    onChange(name: 'user' | 'password', value: any){
+        let _data = this.state.data;
+        _data[name] = value;
+        this.setState({
+            data: _data
+        })
+    }
+    post(){
+        let _data =this.state.data;
+        if(!_data.user || !_data.password){
+            alert('请输入完整！');
+            return;
+        }
+        if(this.props.type === 'register'){
+            alert('注册成功！');
+            this.setState({
+                data:{
+                    user: '',
+                    password: ''
+                }
+            }, ()=>this.props.linkTo('login'));
+        }else{
+            alert('稍后再试！');
+            this.setState({
+                data:{
+                    user: '',
+                    password: ''
+                }
+            })
+        }
+    }
+    
+
+    render() {
+        let text = this.props.type === 'register' ? '注册' : '登录';
+        let fText = this.props.type === 'register' ? '登录' : '注册';
+        return <section style={{padding: '10px'}}>
+            <p style={{textAlign: 'right', padding: '0 10px'}}>
+                <a style={{color: '#EFA30C'}} onClick={()=>{
+                    this.setState({
+                        data: {
+                            user:'',
+                            password: ''
+                        }
+                    },()=>this.props.linkTo('welcome'))
+                    }}
+                >{`返回`}</a>    
+            </p>
+            <div role='title'>
+               <h3 style={{margin: '5px'}}>
+                    {text}账户
+                </h3>
+                <p style={{margin: '5px'}}>
+                    快速{text}，一步到位
+                </p>
             </div>
-            <div style={this.head}>
-                申请流程
-            </div>
-            <div style={this.body}>
-                <ul className='intro-ul'>
-                    {
-                        this.info.map((value: any, key: any)=>{
-                            return <li key={key} style={{marginTop: key !== 0 ? '20px' : '0'}}>
-                                <Icon width='36px'>
-                                    {key+1}
-                                </Icon>
-                                <div style={{marginLeft: '10px', verticalAlign: 'middle',display: 'inline-block'}}>
-                                    <p style={{fontSize: '14px',fontWeight: 'bold'}}>
-                                        {value.text}
-                                    </p>
-                                    <p style={{fontSize: '12px',color: '#666'}}>
-                                        {value.detail}
-                                    </p>
-                                </div>
-                            </li>
-                        })
-                    }
-                    
-                </ul>
-                <div>
-                    <UserInput value='123' />
+            <form style={{textAlign: 'center', height:'calc(100vh - 250px)' ,padding: '40px 10px'}}>
+                <div style={{marginTop: '15px'}}>
+                    <UserInput placeholder={'输入用户名'} value={this.state.data.user} onChange={(e)=>{
+                        this.onChange('user', e.target.value)
+                    }} />
                 </div>
-                <div style={{padding: '20px 0',textAlign:'center'}}>
-                    <PrimaryButton>
-                        立即申请贷款
+                <div style={{marginTop: '15px'}}>
+                    <UserInputPassword placeholder={'输入密码'} value={this.state.data.password} onChange={(e)=>{
+                        this.onChange('password', e.target.value)
+                    }} />
+                </div>
+                <div style={{marginTop: '30px'}}> 
+                    <PrimaryButton onClick={this.post}>
+                        {text}
                     </PrimaryButton>
                 </div>
-                <div style={{textAlign: 'center', fontSize:'12px', color: '#666'}}> 
-                    <p>全流程跟进，彻底解决您的资金需求！</p>
-                    <p>严格保密，绝不泄露客户隐私信息！</p>
-                    <p>
-                        版权所有：广州逐风商业保理有限公司
-                    </p>
-                </div>
-            </div>
+            </form>
+            <p style={{marginBottom: '0', fontSize: '12px', textAlign:'center'}}>
+                {`${this.props.type === 'register' ? '已有' : '没有'}账号？`}
+                <a onClick={()=>{
+                    this.setState({
+                        data:{
+                            user: '',
+                            password: ''
+                        }
+                    },()=>this.props.linkTo(this.props.type === 'register' ? 'login'  : 'register'))
+                    }} style={{color: '#EFA30C'}}>立即{fText}</a>
+            </p>
         </section>
     }
 }
-
-/*
-export const Login = ()=>{
-    let B = Table.A();
-    return <div>
-        <B />
-    </div>
-}
-*/

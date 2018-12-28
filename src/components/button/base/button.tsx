@@ -39,7 +39,7 @@ export class BaseButton extends OperateTemp<BaseButtonProps, any> {
     }
     //允许改变的样式为true才可以改变
     shouldComponentUpdate(nextProps: any, nextState: any){
-        return nextState.shouldUpdate 
+        return nextState.shouldUpdate || this.props.children !== nextProps.children
     }
     componentDidUpdate(){
         this.setState({

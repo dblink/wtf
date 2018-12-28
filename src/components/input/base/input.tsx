@@ -4,6 +4,7 @@ import { OperateTemp, OperateTempState, BaseOperateProps } from '../../template/
 export interface BaseInputProps extends BaseOperateProps { 
     type: React.HTMLAttributes<'HTMLInputElement'>['itemType'];
     mouseFocus ?: string | React.CSSProperties;
+    [index: string]: any;
 }
 
 interface State extends OperateTempState{
@@ -44,7 +45,7 @@ export class BaseInput extends OperateTemp<BaseInputProps, State> {
         }
     }
     shouldComponentUpdate(nextProps: any, nextState: State){
-        return nextState.shouldUpdate
+        return nextState.shouldUpdate || this.props.value !== nextProps.value
     }
     componentDidUpdate(){
         this.setState({
