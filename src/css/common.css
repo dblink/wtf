@@ -4,11 +4,22 @@
     zoom: 1;
     color: #333;
 }
+/*.section{
+    min-width: 320px;
+    margin: auto;
+}*/
+.section, .section *{
+    display: flex;
+    flex-basis: content;
+    flex-direction: column;
+}
 .intro-ul{
     margin: 10px;
     width: 90%;
     max-width: 320px;
     margin: auto;
+    height: 60%;
+    justify-content: space-between;
     list-style-type: none;
     position: relative;
 }

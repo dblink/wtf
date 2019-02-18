@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { UserInput, UserInputPassword } from '../components/input';
-import { PrimaryButton } from '../components/button';
+import { UserInput, UserInputPassword } from '../../components/input';
+import { PrimaryButton } from '../../components/button';
 
 interface Props {
     linkTo: (page: string)=>void;
@@ -11,6 +11,7 @@ interface State {
     data: {
         user: any;
         password: any;
+        card?: any;
     };
     text: string;
 }
@@ -20,6 +21,7 @@ export class Login extends React.Component<Props, State> {
         super(props);
         this.state = {
             data: {
+                card: '',
                 user: '',
                 password: ''
             },
@@ -65,7 +67,7 @@ export class Login extends React.Component<Props, State> {
     render() {
         let text = this.props.type === 'register' ? '注册' : '登录';
         let fText = this.props.type === 'register' ? '登录' : '注册';
-        return <section style={{padding: '10px'}}>
+        return <section style={{padding: '10px', height: '100%', justifyContent: 'space-between'}}>
             <p style={{textAlign: 'right', padding: '0 10px'}}>
                 <a style={{color: '#EFA30C'}} onClick={()=>{
                     this.setState({
@@ -85,7 +87,12 @@ export class Login extends React.Component<Props, State> {
                     快速{text}，一步到位
                 </p>
             </div>
-            <form style={{textAlign: 'center', height:'calc(100vh - 250px)' ,padding: '40px 10px'}}>
+            <form style={{textAlign: 'center' ,padding: '40px 10px'}}>
+                <div style={{marginTop: '15px'}}>
+                    <UserInput placeholder={'输入商户号'} 
+                        value={this.state.data.card}
+                    />
+                </div>
                 <div style={{marginTop: '15px'}}>
                     <UserInput placeholder={'输入用户名'} value={this.state.data.user} onChange={(e)=>{
                         this.onChange('user', e.target.value)

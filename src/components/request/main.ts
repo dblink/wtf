@@ -37,23 +37,19 @@ class AjaxRequest {
             console.error("nodata");
             return;
         }
-        if(this.options.addr){
-            this.options.url = [this.options.addr, this.options.url].join('');
-        }
-        let _baseUrl = 1 ? 'http://lotusapi.hehuadata.com' : '';
+        let _baseUrl = 0 ? 'http://lotusapi.hehuadata.com' : '';
         let _url = [_baseUrl, this.options.url].join('');
-        //console.log(this.options.url);
         let params: any = formatParams(this.options.data);
-        if (this.options.type === "GET") {
+        if (this.options.type === "GET" || this.options.type === 'get') {
             this
                 .xhr
                 .open("GET",   _url + "?" + params, true);
             this
-                .xhr.setRequestHeader("Control-Allow-Origin", this.options.addr || "*");
+                .xhr.setRequestHeader("Control-Allow-Origin", "*");
             this
                 .xhr
                 .send(null);
-        } else if (this.options.type.toString() === "POST") {
+        } else if (this.options.type === "POST" || this.options.type === 'post')  {
             this
                 .xhr
                 .open("POST", _url, true);
@@ -104,27 +100,18 @@ class Ajax extends AjaxRequest {
     date: Date = new Date();
     startTime: number;
     closeArray: any[] = [];
-    constructor(type ?: Key, option ?: OptionType<Key>){
-        super();
-        /*this.type = type;
-        this.options = option;
-        this.options.fail = this.failure(option.fail);
-        this.options.succeed = this.succeed(option.succeed);*/
-    }
-    set option(options:any){
-        //let baseUrl = 'http://lotusapi.hehuadata.com';
-        options = options || {};
-        options.type = (options.type || "GET").toUpperCase();
-        options.dataType = options.dataType || "json";
-        options.contentType = options.contentType || "application/x-www-form-urlencoded";
-        //options.url = options.url;
-        this.options = options; //设置
-        //this.startTime = this.date.getTime();
+
+    action = (options: any)=>{
+        Object.assign(this.options, {
+            type:'GET',
+            dataType: 'json', 
+            contentType: "application/x-www-form-urlencoded"
+        },options);
         this.sendMessage();
     }
 
     /**
-     * 用于获取options.data数据
+     * 获取options.data数据
      * @param data options.data
      */
     getData(data:any){
@@ -137,6 +124,10 @@ class Ajax extends AjaxRequest {
             }
         }
     }
+    /**
+     * 设置options.data数据
+     * @param data options.data
+     */
     setData(data:any){
         let isFormData = typeof data.get === "function";
         return (name: string, value: string)=>{
@@ -146,6 +137,10 @@ class Ajax extends AjaxRequest {
                 data[name] = value;
             }
         }
+    }
+    //错误检测
+    errorDetection(){
+        return
     }
     _main() {
         let type: Key,
@@ -161,10 +156,13 @@ class Ajax extends AjaxRequest {
         names = _options.error ? Object.keys(_options.error) as RequestParameter[Key][] : [];
         let _getDataFunc = this.getData(_options.data);
 
+        
         for(let i = 0; i< names.length; i++){
             let _name = names[i];
+            
+            //错误检测
             if(!_getDataFunc(_name)){
-                let _error: ErrorCallback =   {
+                let _error: ErrorCallback = {
                     Status: "FAILURE",
                     ErrMsg: _options.error[_name] ,//错误信息
                     Value : ""
@@ -173,16 +171,9 @@ class Ajax extends AjaxRequest {
                 return;
             }
         }
-        //console.log(_options, this.type);
-        this.option = _options;
+        this.action(_options)
     }
     main(){
-        let type = this.type;
-        //console.log(this);
-        /*if(type !== 'login'){
-            let _setDataFunc = this.setData(this.options.data);
-            _setDataFunc('Token', localData.getData('Token'));
-        }*/
         this._main();
     }
     then(func: any){

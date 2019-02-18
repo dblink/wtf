@@ -16,6 +16,7 @@ export const config: config = {
             borderRadius: '18px',
             cursor: 'pointer',
             color: '#333333',
+            margin: 'auto',
             backgroundColor: '#FBDE3C',
             fontSize: '14px',
             fontWeight: 'bold',

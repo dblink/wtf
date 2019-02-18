@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {Index} from ".";
-import '../css/common.css';
+import {Index} from './src/page'
+import './src/css/common.css';
 class TestForm extends React.Component {
     data:any = {
         "PlatformMoneymoremore": "s2",

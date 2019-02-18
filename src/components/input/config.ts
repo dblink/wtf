@@ -18,6 +18,7 @@ export const config:config = {
             borderRadius: '18px',
             color: '#666666',
             backgroundColor: '#f2f2f2',
+            margin: 'auto',
             fontSize: '12px',
             border: 'none',
             textIndent: '20px'
@@ -40,6 +41,7 @@ export const config:config = {
             appearance: 'none',
             backgroundColor: '#f2f2f2',
             fontSize: '12px',
+            margin: 'auto',
             border: 'none',
             textIndent: '20px'
         },
