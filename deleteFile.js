@@ -7,7 +7,11 @@ const deleteFolderFile = function(path) {
         files = fs.readdirSync(path);
         files.forEach(function(file,index){
             var curPath = path + "/" + file;
-            fs.unlinkSync(curPath);
+            if(fs.statSync(curPath).isDirectory()) {
+                deleteFolderFile(curPath);
+            } else { // delete file
+                fs.unlinkSync(curPath);
+            }
         });
     }
 }
