@@ -17,6 +17,7 @@ export class BaseButton extends OperateTemp<BaseButtonProps, any> {
         this.mouseEvent = this.getMouseEvent();
     }
     mouseEvent: React.DOMAttributes<HTMLSpanElement>;
+    
     //添加鼠标样式
     getMouseEvent(): React.DOMAttributes<HTMLSpanElement>{
         let _mouseEvent:React.DOMAttributes<HTMLSpanElement> = {};
@@ -30,9 +31,10 @@ export class BaseButton extends OperateTemp<BaseButtonProps, any> {
         if(this.props.mouseDown){
            Object.assign(_mouseEvent, this.isDown());
         }
-        
+
         return _mouseEvent;
     }
+
     //允许改变的样式为true才可以改变
     shouldComponentUpdate(nextProps: any, nextState: any){
         return nextState.shouldUpdate || this.props.children !== nextProps.children

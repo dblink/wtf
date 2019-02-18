@@ -26,21 +26,9 @@ export class OperateTemp <P, S extends OperateTempState> extends React.Component
         //如果是string类型（className）更新className
         if(typeof this.props.mouseHover === 'string'){
             this.updateClassName.call(this,this.props.mouseHover);
-            /*this.setState({
-                shouldUpdate: true,
-                style: this.props.style,
-                className: `${this.props.className} ${this.props.mouseHover}`
-            })*/
+            
         }else{
             this.updateStyle(this.props.mouseHover as React.CSSProperties );
-            /*let _style = this.state.style;
-            //初始化 className 并且改变 style
-            this.setState({
-                shouldUpdate: true,
-                style: Object.assign({}, _style, this.props.mouseHover),
-                className: this.props.className
-            })
-            */
         }
         
     }
@@ -65,18 +53,8 @@ export class OperateTemp <P, S extends OperateTempState> extends React.Component
     _onMouseDownHandler(e: any){
         if(typeof this.props.mouseDown === 'string'){
             this.updateClassName(this.props.mouseDown)
-            /*
-            this.setState({
-                shouldUpdate: true,
-                className: `${this.state.className} ${this.props.mouseDown}`
-            })*/
         }else{
             this.updateStyle(this.props.mouseDown as React.CSSProperties)
-            /*let _style = this.state.style;
-            this.setState({
-                shouldUpdate: true,
-                style: Object.assign({}, _style, this.props.mouseDown)
-            });*/
         }
     }
     _onMouseUpHandler(e: any){
