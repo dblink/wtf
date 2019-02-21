@@ -3,27 +3,67 @@ import { config } from './config';
 import {BaseButton } from './base/button';
 
 interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
-    width: string
+    //width: string
+    //iconName: string;
+    title: string;
+    children: string;
+    width ?: string;
 }
 interface PrimaryButtonProps extends React.HTMLAttributes<HTMLSpanElement>{
-    
+    width ?: string;
 }
-export class PrimaryButton extends React.Component<PrimaryButtonProps, any>{
-    render(){
-        return <BaseButton {...config.windPrimaryButton} {...this.props} >
-            {this.props.children}
-        </BaseButton>
-    }
+interface ButtonProps extends React.HTMLAttributes<HTMLSpanElement>{
+    width ?: string;
+    onTouchEnd ?: any;
 }
-export class Icon extends React.Component<IconProps, any>{
-    render(){
-        let _style: React.CSSProperties = config.icon.style;
-        _style.width = this.props.width;
-        _style.height = this.props.width;
-        _style.lineHeight = this.props.width;
-        config.icon.style = _style;
-        return <BaseButton {...config.icon} {...this.props} >
-            {this.props.children}
-        </BaseButton>
+
+export const PlateIcon = (props: IconProps)=>{
+    if(props.width){
+        config.plateButton.style.width = props.width;
+        config.plateButton.style.height = props.width;
     }
+    return <BaseButton {...config.plateButton} {...props}>
+        <span {...config.plateIcon}>
+            {props.children}
+        </span>
+        <span>
+            {props.title}
+        </span>
+    </BaseButton>
+}
+export const PrimaryButton = (props: PrimaryButtonProps)=>{
+    let {width, ...other} = props;
+    if(width){
+        config.primaryButton.style.width = width;
+    }
+
+    return <BaseButton {...config.primaryButton} {...other}>
+        {props.children}
+    </BaseButton>
+}
+export const Button = (props:ButtonProps) =>{
+    let {width, ...other} = props;
+    if(width){
+        config.button.style.width = width;
+    }
+    return <BaseButton {...config.button} {...other}>
+        {props.children}
+    </BaseButton>
+}
+export const AddOrMinus = (props:ButtonProps) =>{
+    return <BaseButton {...config.addOrMinus} {...props}>
+        {props.children}
+    </BaseButton>
+}
+
+export const SelectButton = (props: any) =>{
+    return <BaseButton {...config.selectButton} {...props}>
+        {props.children}
+    </BaseButton>
+}
+
+export const AccountButton = (props: any) =>{
+    return <BaseButton {...config.accountButton} {...props}>
+        {props.children}
+    </BaseButton>
 }

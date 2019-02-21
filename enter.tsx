@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {Index} from './src/page'
+//import {Index} from './src/page';
+import {PageRouter} from './src/page/router';
 import './src/css/common.css';
 class TestForm extends React.Component {
     data:any = {
@@ -26,4 +27,4 @@ class TestForm extends React.Component {
     }
 }
 ReactDOM.render(
-    <Index />, document.getElementById("example"));
+    <PageRouter />, document.getElementById("example"));

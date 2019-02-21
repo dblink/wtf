@@ -1,0 +1,103 @@
+@font-face {
+  font-family: 'icomoon-wansan-icons';
+  src:  url('fonts/icomoon-wansan-icons.eot?bldrjq');
+  src:  url('fonts/icomoon-wansan-icons.eot?bldrjq#iefix') format('embedded-opentype'),
+    url('fonts/icomoon-wansan-icons.ttf?bldrjq') format('truetype'),
+    url('fonts/icomoon-wansan-icons.woff?bldrjq') format('woff'),
+    url('fonts/icomoon-wansan-icons.svg?bldrjq#icomoon-wansan-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-wansan"], [class*=" icon-wansan"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon-wansan-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-wansanselectFull:before {
+  content: "\e90d";
+  color: #ff9e2e;
+}
+.icon-wansancartDefault:before {
+  content: "\e900";
+  color: #999;
+}
+.icon-wansancartSelected:before {
+  content: "\e908";
+  color: #ff9e2e;
+}
+.icon-wansanhomeDefault:before {
+  content: "\e909";
+  color: #999;
+}
+.icon-wansanhomeSelected:before {
+  content: "\e90a";
+  color: #ff9e2e;
+}
+.icon-wansanmineDefault:before {
+  content: "\e90b";
+  color: #999;
+}
+.icon-wansanmineSelected:before {
+  content: "\e90c";
+  color: #ff9e2e;
+}
+.icon-wansanselectEmpty:before {
+  content: "\e925";
+  color: #ccc;
+}
+.icon-wansancart:before {
+  content: "\e910";
+  color: #666;
+}
+.icon-wansanbag:before {
+  content: "\1f5db";
+  color: #666;
+}
+.icon-wansanchild:before {
+  content: "\e901";
+  color: #666;
+}
+.icon-wansaninner:before {
+  content: "\e902";
+  color: #666;
+}
+.icon-wansanman:before {
+  content: "\e903";
+}
+.icon-wansanmanShoes:before {
+  content: "\e904";
+  color: #666;
+}
+.icon-wansansports:before {
+  content: "\e905";
+  color: #666;
+}
+.icon-wansanwoman:before {
+  content: "\e906";
+  color: #666;
+}
+.icon-wansanwomanShoes:before {
+  content: "\e907";
+  color: #666;
+}
